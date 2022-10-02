@@ -28,7 +28,7 @@ private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
  * The class for the only fragment in the app, which contains the progress bar,
  * recyclerView, and performs the network calls to movies API.
  */
-class TheMoviesFragment : Fragment(), OnListFragmentInteractionListener {
+class TheMoviesFragment : Fragment() {
 
     /*
      * Constructing the view
@@ -83,7 +83,7 @@ class TheMoviesFragment : Fragment(), OnListFragmentInteractionListener {
                         val arrayMovieType = object : TypeToken<List<TheMovie>>() {}.type
                         val models : List<TheMovie> = gson.fromJson(moviesRawJSON, arrayMovieType)
 
-                        recyclerView.adapter = TheMoviesRecyclerViewAdapter(models, this@TheMoviesFragment)
+                        recyclerView.adapter = TheMoviesRecyclerViewAdapter(models)
 
                     }
 
@@ -140,8 +140,8 @@ class TheMoviesFragment : Fragment(), OnListFragmentInteractionListener {
     /*
      * What happens when a particular movie is clicked.
      */
-    override fun onItemClick(item: TheMovie) {
-        Toast.makeText(context, "test: " + item.title, Toast.LENGTH_LONG).show()
-    }
+//    override fun onItemClick(item: TheMovie) {
+//        Toast.makeText(context, "test: " + item.title, Toast.LENGTH_LONG).show()
+//    }
 
 }

@@ -1,10 +1,13 @@
 package com.codepath.bestsellerlistapp
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codepath.bestsellerlistapp.R.id
@@ -13,9 +16,9 @@ import com.codepath.bestsellerlistapp.R.id
  * [RecyclerView.Adapter] that can display a [TheMovie] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  */
-class TheMoviesRecyclerViewAdapter(
+class TheMoviesRecyclerViewAdapter (
     private val movies: List<TheMovie>,
-    private val mListener: OnListFragmentInteractionListener?
+   // private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<TheMoviesRecyclerViewAdapter.MovieViewHolder>()
     {
@@ -29,14 +32,26 @@ class TheMoviesRecyclerViewAdapter(
      * This inner class lets us refer to all the different View elements
      * (Yes, the same ones as in the XML layout files!)
      */
-    inner class MovieViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class MovieViewHolder(val mView: View) : RecyclerView.ViewHolder(mView), View.OnClickListener {
         var mItem: TheMovie? = null
         val mMovieTitle: TextView = mView.findViewById<View>(id.movie_title) as TextView
         val mMovieOverview: TextView = mView.findViewById<View>(id.movie_overview) as TextView
         val mMoviePoster: ImageView = mView.findViewById<View>(id.movie_image) as ImageView
 
+        init {
+            mView.setOnClickListener(this)
+        }
+
         override fun toString(): String {
             return mMovieTitle.toString() + " '" + mMovieOverview.text + "'"
+        }
+
+        override fun onClick(v: View?) {
+            val curr_movie = movies[this.adapterPosition]
+            Log.e("clicking",this.adapterPosition.toString())
+            Log.e("clicking",curr_movie.title.toString())
+
+
         }
     }
 
@@ -57,11 +72,11 @@ class TheMoviesRecyclerViewAdapter(
             .centerInside()
             .into(holder.mMoviePoster)
 
-        holder.mView.setOnClickListener {
-            holder.mItem?.let { book ->
-                mListener?.onItemClick(book)
-            }
-        }
+//        holder.mView.setOnClickListener {
+//            holder.mItem?.let { book ->
+//                mListener?.onItemClick(book)
+//            }
+//        }
     }
 
     /**
