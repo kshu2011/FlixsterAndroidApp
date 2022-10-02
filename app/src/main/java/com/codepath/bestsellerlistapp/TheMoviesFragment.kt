@@ -1,5 +1,6 @@
 package com.codepath.bestsellerlistapp
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
  */
 class TheMoviesFragment : Fragment() {
 
+    //private val context2 = context
     /*
      * Constructing the view
      */

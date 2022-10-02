@@ -7,17 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codepath.bestsellerlistapp.R.id
+
+const val EXTRA_INFORMATION = "EXTRA_INFORMATION"
 
 /**
  * [RecyclerView.Adapter] that can display a [TheMovie] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  */
 class TheMoviesRecyclerViewAdapter (
-    private val movies: List<TheMovie>,
+    private val movies: List<TheMovie>
    // private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<TheMoviesRecyclerViewAdapter.MovieViewHolder>()
@@ -51,6 +52,10 @@ class TheMoviesRecyclerViewAdapter (
             Log.e("clicking",this.adapterPosition.toString())
             Log.e("clicking",curr_movie.title.toString())
 
+
+            val intent = Intent(MainActivity.instance, DetailActivity::class.java)
+            intent.putExtra(EXTRA_INFORMATION, curr_movie.title)
+            MainActivity.instance.startActivity(intent)
 
         }
     }
