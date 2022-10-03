@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codepath.bestsellerlistapp.R.id
 
-const val EXTRA_INFORMATION = "EXTRA_INFORMATION"
+const val MOVIE_TITLE = "MOVIE_TITLE"
+const val MOVIE_SYNOPSIS = "MOVIE_SYNOPSIS"
+const val PATH = "PATH"
 
 /**
- * [RecyclerView.Adapter] that can display a [TheMovie] and makes a call to the
- * specified [OnListFragmentInteractionListener].
+ * [RecyclerView.Adapter] that can display a [TheMovie]
  */
 class TheMoviesRecyclerViewAdapter (
     private val movies: List<TheMovie>
-   // private val mListener: OnListFragmentInteractionListener?
     )
     : RecyclerView.Adapter<TheMoviesRecyclerViewAdapter.MovieViewHolder>()
     {
@@ -54,7 +54,9 @@ class TheMoviesRecyclerViewAdapter (
 
 
             val intent = Intent(MainActivity.instance, DetailActivity::class.java)
-            intent.putExtra(EXTRA_INFORMATION, curr_movie.title)
+            intent.putExtra(MOVIE_TITLE, curr_movie.title)
+            intent.putExtra(MOVIE_SYNOPSIS, curr_movie.overview)
+            intent.putExtra(PATH, curr_movie.poster_path)
             MainActivity.instance.startActivity(intent)
 
         }
